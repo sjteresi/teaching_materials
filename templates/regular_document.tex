@@ -1,0 +1,60 @@
+\documentclass[12pt,letterpaper]{article}
+
+\usepackage{lipsum}
+\usepackage{enumerate}
+\usepackage{comment}
+\usepackage{datetime}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=1.00in, right=1.00in, top=1.00in, bottom=1.00in]{geometry}
+\usepackage{gensymb}
+\usepackage{imakeidx}
+\usepackage[dvipsnames]{xcolor}
+
+
+
+\usepackage[pdftex]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+% \addbibresource{$HOME/Documents/LaTeX/uni.bib}
+% \usepackage[backend=biber, style=authoryear-icomp]{biblatex}
+%----------------------------------------------------------
+\makeatletter
+
+\date{\today}
+\author{Scott Teresi}
+\title{Title}
+\begin{document}
+\begin{flushright}
+\small
+\textbf{\@author}\\
+\@title\\
+\@date\\
+\end{flushright}
+
+\makeatother
+ %----------------------------------------------------------
+\normalsize
+% Text goes here
+\lipsum
+
+
+
+
+
+
+
+
+
+% \printbibliography
+\end{document}

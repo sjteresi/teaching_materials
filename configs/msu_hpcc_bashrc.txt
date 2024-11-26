@@ -1,0 +1,157 @@
+# old module load ncurses/6.1
+# old module load GNU/6.4.0-2.28 OpenMPI/2.1.2
+# old module load Vim/8.2.0236-Python-3.6.4
+# old module load git/2.27.0
+# old module load git-lfs/2.11.0
+
+# New
+# module load ncurses/6.2
+module purge
+module load Vim/9.1.0004-GCCcore-12.2.0
+module load git/2.38.1-GCCcore-12.2.0-nodocs
+module load git-lfs/3.5.1
+
+# Activate our text editor environment by alias
+alias edit='source /mnt/home/teresisc/Upgraded_Python_Env/black/bin/activate'
+export LANG="C"
+export LC_ALL="C"
+
+######################
+test -f /etc/profile.dos && . /etc/profile.dos
+green=$(tput setaf 2) # \e[36m
+blue=$(tput setaf 4) # \e[36m
+reset=$(tput sgr0)   # \e[0m
+PS1='\[$green\]\u@\h:\[$blue\]\w\$\[$reset\] '
+export PS1
+#PS1='\[$green\]\u@\h:\[$blue\]\w\$\[$reset\] '
+
+
+#PS1='\u@\h: \w\a$ ' # set up so that you have your username and location
+#PS1='[\u@\h: \w\a$\]' # set up so that you have your username and location
+# Some applications read the EDITOR variable to determine your favourite text
+# editor. So uncomment the line below and enter the editor of your choice :-)
+#export EDITOR=/usr/bin/vim
+#export EDITOR=/usr/bin/mcedit
+
+#case "$TERM" in
+	#xterm-color|*-256color) color_prompt=yes;;
+#esac
+
+# Edit ViM
+alias cfv='vim ~/.vimrc'
+
+#module load GCC/7.3.0-2.30 OpenMPI/3.1.1 git/2.18.0
+
+myjobinfo(){
+	sacct -j "$1" --format=jobid,jobname,reqcpus,reqmem,averss,maxrss,elapsed,state%20,exitcode --unit=G
+}
+
+alias git_graph='git log --oneline --graph --decorate --all'
+
+
+#alias job_info='js -z -j'
+
+
+# add aliases if there is a .aliases file
+test -s ~/.alias && . ~/.alias
+alias home="cd ~"
+alias cfb="vim /mnt/home/teresisc/.bashrc"
+alias cbs="source /mnt/home/teresisc/.bashrc"
+alias v="vim "
+alias back="cd ../"
+alias cdd="cd /mnt/home/teresisc/Documents"
+alias cdr="cd /mnt/research/edgerpat_lab/Scotty"
+alias cdf="cd /mnt/research/edgerpat_lab/Scotty/Grape_RNA_Seq/Input_Data/FAST/20190724_mRNASeq_PE150/20190724_mRNASeq_PE150"
+alias cds="cd /mnt/research/edgerpat_lab/Scotty/Grape_RNA_Seq/Scripts"
+alias sqs="squeue -u teresisc"
+alias sqc="scancel -u teresisc"
+alias sdev="ssh dev-intel14"
+alias gr="cd /mnt/research/edgerpat_lab/Scotty/"
+alias grr="cd /mnt/research/strawberry/"
+alias gss="cd /mnt/scratch/teresisc/"
+alias ge="cd /mnt/research/edgerpat_lab/Scotty/TE_Density/"
+alias gbb="cd /mnt/research/edgerpat_lab/MSU_GenomicsCore_Sequencing_2018/VaccBSGW_Bnap_20181005_RNASeq_PE150/VaccBSGW/"
+
+alias load_python_3_point_8='module load GCCcore/10.2.0 && module load Python/3.8.10'
+alias load_python_three_ten='module load GCCcore/11.3.0 Python/3.10.4'
+alias load_jcvi_and_python='module load icc/2017.4.196-GCC-6.4.0-2.28 impi/2017.3.196 LAST/914 GCCcore/9.3.0 Python/3.8.0 texlive/20210316'
+
+# VENVs
+alias source_te="source /mnt/research/edgerpat_lab/Scotty/venvs/TE_Density/bin/activate"
+alias source_fish="source /mnt/research/edgerpat_lab/Scotty/venvs/Fish_TEs/bin/activate"
+alias source_jcvi="source /mnt/research/edgerpat_lab/Scotty/venvs/jcvi/bin/activate"
+alias source_annotation="source /mnt/research/edgerpat_lab/Scotty/venvs/TE_Annotations/bin/activate"
+alias source_blueberry_TE="module purge && module load GCCcore/10.2.0 Python/3.8.10 && source /mnt/research/edgerpat_lab/Scotty/venvs/Blueberry_Pangenome_TE/bin/activate"
+alias source_blueberry_network="module purge && module load GCC/6.4.0-2.28 OpenMPI/2.1.2 Python/3.6.4 && source /mnt/research/edgerpat_lab/Scotty/venvs/Blueberry_Network_Rewiring/bin/activate"
+alias source_fern="source /mnt/research/edgerpat_lab/Scotty/venvs/Ferns_and_Fungi/bin/activate"
+alias source_camelina_annotation="module load GCCcore/11.3.0 Python/3.10.4 && source /mnt/research/edgerpat_lab/Scotty/venvs/Camelina_TE_Annotation/bin/activate"
+
+# Load Python 3.10.4 first
+alias source_straw_domestication_v2="source /mnt/research/edgerpat_lab/Scotty/venvs/S_Domestication/bin/activate"
+alias source_bat="source /mnt/research/edgerpat_lab/Scotty/venvs/Bat_TE/bin/activate"
+
+#alias ranger="cd /mnt/home/teresisc/ranger && python ranger.py"
+alias ranger='python /mnt/home/teresisc/ranger/ranger.py'
+alias r="cd /mnt/home/teresisc/ranger && python ranger.py"
+alias cfr="vim /mnt/home/teresisc/ranger/ranger/config/rc.conf"
+
+#alias loadmods="module load Pandoc/2.1.3 GNU/6.4.0-2.28 GCC/6.4.0-2.28 GMP/6.1.2 Python/3.6.4 OpenMPI/3.1.1 R/3.5.1-X11-20180604"
+
+export PYTHONPATH="/mnt/research/edgerpat_lab/Scotty/Strawberry_Domestication"
+#"/mnt/research/edgerpat_lab/Scotty/Strawberry_Domestication/:/mnt/research/edgerpat_lab/Scotty/Strawberry_Domestication/TE_Density"
+
+alias loadmods="module purge && module load GCC/7.3.0-2.30 OpenMPI/3.1.1 Pandoc/2.1.3 R/3.5.1-X11-20180604 rstudio/1.1.456"
+
+alias setups="loadmods && ranger"
+
+#alias hic_mods="module purge && module load GCC/6.4.0-2.28 OpenMPI/2.1.1 BWA/0.7.17 Java/JDK12 CUDA/7.5.18"
+#OpenMPI/1.10.3 OpenMPI/1.10.3-CUDA
+alias mys='cd /mnt/scratch/teresisc/'
+alias load_r="module purge && module load GCC/8.3.0 OpenMPI/3.1.4 R/4.0.2"
+alias load_r_mkl="module purge && module load iccifort/2019.5.281 impi/2018.5.288 R/4.0.0"
+alias load_rstrawberry='module purge && module load GCC/11.2.0 OpenMPI/4.1.1 R/4.2.2 && module load Conda/3 && conda activate r_strawberry_domestication'
+alias load_edta="module load Conda/3 && conda activate EDTA"
+alias load_r_libr="module purge && module load intel/2019b R/4.0.0"
+alias load_and_source_htseq="module purge && module load GCCcore/11.3.0 Python/3.10.4 && source /mnt/research/edgerpat_lab/Scotty/venvs/HTSeq/bin/activate"
+alias tardir='tar -zcvf'
+alias du_simple='du -h --max-depth=1'
+alias all_info='buyin_status -a edgerpat'
+#alias load_rcamelina='module purge && module load GCC/11.2.0 OpenMPI/4.1.1 R/4.2.2 && module load Conda/3 && conda activate r_camelina'
+
+alias git_graph='git log --oneline --graph --color --all --decorate'
+alias get_top='htop -u teresisc'
+alias get_running_top="htop -u teresisc -p $(ps axo pid,stat | grep '^[ 0-9]* [RD]' | awk '{print $1}' | tr '\n' ',')"
+alias conda_list='conda info --envs'
+
+#alias load_python="module load GCC/7.3.0-2.30 OpenMPI/3.1.1 Python/3.7.0"
+#export LD_RUN_PATH=/usr/local/lib
+
+
+# Linewrap
+#setterm -linewrap on
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/mnt/home/teresisc/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+    #eval "$__conda_setup"
+#else
+    #if [ -f "/mnt/home/teresisc/anaconda3/etc/profile.d/conda.sh" ]; then
+        #. "/mnt/home/teresisc/anaconda3/etc/profile.d/conda.sh"
+    #else
+        #export PATH="/mnt/home/teresisc/anaconda3/bin:$PATH"
+    #fi
+#fi
+#unset __conda_setup
+# <<< conda initialize <<<
+
+
+export CONDA3PATH=~/anaconda3/
+
+#export R_LIBS_USER=/mnt/home/teresisc/R_LIB/4.0.0/
+
+
+#export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:';
+
+# Created by `pipx` on 2022-09-23 17:39:41
+# export PATH="$PATH:/mnt/ufs18/home-115/teresisc/.local/bin"

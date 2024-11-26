@@ -1,0 +1,103 @@
+set nocompatible              " required
+filetype off                  " required
+
+set hlsearch
+
+set backspace=indent,eol,start
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+set iskeyword-=.
+
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'psf/black'
+"Plugin 'tmhedberg/SimpylFold'
+"Plugin 'vim-scripts/indentpython.vim'
+
+
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'vim-scripts/Pydiction'
+"Plugin 'vim-syntastic/syntastic'
+"Plugin 'nvie/vim-flake8'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Plugin 'xuhdev/vim-latex-live-preview'
+"Plugin 'Valloric/YouCompleteMe'
+
+" Colors
+Plugin 'jnurmine/Zenburn' " terminal mode colors
+Plugin 'altercation/vim-colors-solarized' " GUI mode colors
+Plugin 'junegunn/seoul256.vim'
+Plugin 'morhetz/gruvbox'
+
+" ...
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+"let g:SimpylFold_docstring_preview = 1
+"let g:ycm_autoclose_preview_window_after_completion=1
+"let g:livepreview_previewer = 'zathura'
+let g:black_virtualenv='/mnt/research/edgerpat_lab/Scotty/venvs/Blueberry_Network_Rewiring/bin/'
+
+
+colorscheme zenburn
+"hi Normal guibg=None ctermbg=None
+
+
+"custom keys
+"let mapleader=" "
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" call togglebg#map("<F5>") " toggle switch for colorschemes
+
+
+" Enable folding
+set splitbelow
+set splitright
+set foldmethod=indent
+set foldlevel=99
+"" Enable folding with spacebar as opposed to za
+nnoremap <space> za
+"
+autocmd BufWritePre *.py execute ':Black'
+"
+au BufNewFile,BufRead *.py
+	\ set tabstop=4 |
+	\ set softtabstop=4 |
+	\ set shiftwidth=4 |
+	\ set textwidth=79 |
+	\ set expandtab |
+	\ set autoindent |
+	\ set fileformat=unix
+"
+highlight BadWhitespace ctermbg=red guibg=red
+"
+"
+au BufRead,BufNewFile *.py match BadWhitespace /\s\+$/ " trailing whitespace
+"
+set encoding=utf-8
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" let NERDTreeIgnore=['\.pyc$', '\~$'] "Ignore files in NERDTree
+
+let python_highlight_all=1
+syntax on
+
+if has('gui_running')
+	set background=dark
+	colorscheme=solarized
+else
+	colorscheme zenburn
+endif
+
+
+set nu " line numbers
+set noswapfile
+

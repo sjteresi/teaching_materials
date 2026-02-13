@@ -294,7 +294,93 @@ class ExampleClass:
 - Python type hints (from the `typing` module where necessary, e.g., `List`, `Dict`, `Optional`, `Tuple`, `NamedTuple`, `Set`, `Any`) should be used for all function/method parameters and return values.
 - The types specified in the docstring's `Args:` and `Returns:` sections must match the type hints in the function/method signature.
 
+# Other Guidelines:
+- Do not introduce verbose checks to ensure input files exist unless explicitly requested. When that feature is requested the check should be implemented in a function, typically preface the name of the function with "validate_" to indicate its purpose.
+
+### Key Tidying Operations:
+
+1. **Guard Clause** - Replace nested conditionals with early returns
+2. **Dead Code Removal** - Delete unused code, comments, or imports
+3. **Explaining Variables** - Introduce variables for complex expressions
+4. **Explaining Constants** - Replace magic numbers with named constants
+5. **Extract Helper** - Move chunks of code into separate functions
+6. **Normalize Symmetries** - Make similar code look the same
+7. **Rationalize Names** - Improve variable/function names for clarity
+
+### When to Tidy
+
+- Before adding features to messy code
+- When you're already reading and understanding code
+- As part of daily development workflow
+- Keep each tidying small and focused
+- Ensure tests pass after each tidying
+
+### Tidying Workflow
+
+1. Identify needed behavioral change
+2. Examine the code - if messy, tidy first
+3. Commit tidyings as separate structural changes
+4. Implement behavioral change in clean code
+5. Commit behavioral change separately
+
+Remember: All tidyings are refactorings, but keep them small (minutes, not hours) and low-risk.
+
 By following these guidelines, the docstrings will be informative, consistent, and easy for both humans and documentation generation tools to understand.
+
+
+## Template Python Script:
+For any new Python script, it ought to begin with the following structure. 
+```python
+"""
+Your description here
+"""
+
+__author__ = "John Doe"
+
+import argparse
+import os
+import logging
+import coloredlogs
+
+
+def my_function(argument_1, argument_2):
+    """
+    Description of the function
+
+    Args:
+        argument_1 (type): Description of Argument_1
+        argument_2 (type): Description of Argument_2
+
+    Returns:
+        my_value (type): Description of my_value
+    """
+    raise NotImplementedError("Function not implemented yet")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="TODO")
+    parser.add_argument("input_file", type=str, help="path to input data file")
+    parser.add_argument("output_file", type=str, help="path to output data file")
+    parser.add_argument(
+        "-v", "--verbose", action="store_true", help="set debugging level to DEBUG"
+    )
+
+    args = parser.parse_args()
+    args.input_file = os.path.abspath(args.input_file)
+    args.output_file = os.path.abspath(args.output_file)
+
+    log_level = logging.DEBUG if args.verbose else logging.INFO
+    logger = logging.getLogger(__name__)
+    coloredlogs.install(level=log_level)
+    # ------------------------------------------------------------------
+
+    # Start your code here
+    # Checkout the logging module for debugging and general information
+    # statements
+    # logger.info(f"My input file is {args.input_file}")
+```
+
+This template includes a module docstring, an author variable, imports for common libraries, a sample function with a docstring, and a standard `if __name__ == "__main__":` block for argument parsing and logging setup. The actual implementation of the function and the main code logic should be added where indicated. 
 
 # Regular Markdown Documents and Planning Files:
 When constructing Markdown Documents for the user they should use the following heading:

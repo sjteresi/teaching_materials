@@ -8,35 +8,22 @@ output:
 \begin{flushright}
 \textbf{Weekly Report} \\
 \textbf{Author: Scott Teresi} \\
-\textbf{Date: January 20th, 2023} \\
+\textbf{Date: May 8th, 2026} \\
 \end{flushright}
 
-# Completed work:
+# Completed Work:
 - Lorem ipsum
 - Lorem ipsum
 - Lorem ipsum
 
-# What is blocking me:
--  Lorem impsum
-
-# What I find difficult to do or understand:
-- Lorem ipsum
-    
-    ```
-    Here is a code block, it requires an empty line between it and surrounding text
-    ```
-
-# Things that I feel should be easier:
+# Short-Term Planned Work & Workflow:
 - Lorem ipsum
 
-## Issues and potential solutions:
-- Issue 1: [Description of issue]
-  - Solution: [Description of solution]
-- Issue 2: [Description of issue]
-  - Solution: [Description of solution]
-
-# What I am planning to work on and how:
+# Blockers & Issues:
 - Lorem ipsum
 
-# Missed goals from previous weeks:
+# Learnings & Reflections:
+- Lorem ipsum
+
+# Future Outlook:
 - Lorem ipsum
